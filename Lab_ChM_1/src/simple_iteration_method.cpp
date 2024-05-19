@@ -37,7 +37,7 @@ void Ax_b::S_I_M(double* x0) // Метод Простых Итераций
 		norma_r = norma(r);
 		my_epsilon = norma(a_minus_b(x0, x_prev));
 
-		cout << endl << "step=" << step << endl << "  >>| ||r(" << step << ")|| = " << norma_r << endl << "  >>| epsilon(" << step << ") = " << my_epsilon << endl << endl << endl;
+		cout << endl << "step=" << step << endl << "  >>| ||r(" << step << ")|| = " << norma_r << endl << "  >>| epsilon(" << step << ") = " << my_epsilon <<endl << " t: " << t_ << endl << endl << endl;
 
 		x_prev = x0;
 		step++;

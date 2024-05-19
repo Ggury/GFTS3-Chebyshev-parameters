@@ -7,7 +7,7 @@ using namespace std;
 class Ax_b
 {
 public:
-	Ax_b(double** in_Matrix, int in_n, double* in_b, double in_t_, double in_epsilon, int in_N);
+	Ax_b(double** in_Matrix, int in_n, double* in_b, double in_t_, double in_epsilon, int in_N , int in_k);
 	~Ax_b();
 
 	double** Matrix_A;
@@ -16,6 +16,9 @@ public:
 							// Надеюсь на matrix solver Вадима
 	double* b;
 	double t_;              // 1/(Mmin + Mmax) из оценок собств. чисел    (Вадим, мне жаль...   (TT_TT  )  )
+	double Mmin = 2;
+	double Mmax = 15;
+	int k;
 
 	double epsilon;         // Точность       Метод проходит итерации пока не достигнет этой точности (или после N шагов)
 	int N;                  // Критерий остановки - max кол-во ходов    (epsilon = 0 , чтобы метод работал N итераций)
@@ -34,6 +37,11 @@ public:
 
 	void M_R_M_no_input();
 	void M_R_M(double* x0); // Метод Минимальных Невязок
+
+	void C_P_M_no_input();
+	void C_P_M(double* x0); // Метод Чебышевских Параметров
+
+	void findM(int n, int m, double h, double k);
 
 
 

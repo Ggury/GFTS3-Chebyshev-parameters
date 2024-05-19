@@ -19,6 +19,7 @@ int main()
 	b[0] = 3.2;
 	b[1] = 1.;
 	b[2] = 13.2;
+	int k = 5;
 
 	double x0[3]; // начальное приближение
 	x0[0] = 0.;
@@ -30,15 +31,23 @@ int main()
 	double epsilon=0.01;  // Требуемая точность (не выше)
 	int N=100;  // критерий остановки по шагам
 
-	Ax_b Axb1(Matrix, n, b, t_, epsilon, N) ;
-	Ax_b Axb2(Matrix, n, b, t_, epsilon, N);
+	Ax_b Axb1(Matrix, n, b, t_, epsilon, N, k) ;
+	Ax_b Axb2(Matrix, n, b, t_, epsilon, N, k);
+	Ax_b Axb3(Matrix, n, b, t_, epsilon, N, k);
 
 
-	Axb1.S_I_M(x0); // Метод Простых Итераций
-	Axb2.M_R_M(x0); // Метод Минимальных Невязок
+	//Axb1.S_I_M(x0); // Метод Простых Итераций
+	//Axb2.M_R_M(x0); // Метод Минимальных Невязок
+	//Axb3.C_P_M(x0);
 
 
-	//Axb1.S_I_M_no_input();
-	//cout << endl << endl << endl;   // Тоже работает
-	//Axb2.M_R_M_no_input();
+	Axb1.S_I_M_no_input();
+	cout << endl << endl << endl;   // Тоже работает
+	Axb2.M_R_M_no_input();
+	cout << endl << endl << endl;
+	Axb3.C_P_M_no_input();
+
+	double h = 1 / 2;
+	Axb1.findM(3, 3, 1. / 3., 1. / 3.);
+
 }
